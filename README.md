@@ -1,5 +1,7 @@
 # vitrea
-A tiny implementation of lenses and optics in Agda.
+A tiny implementation of lenses and optics in Agda.  The formal proofs that
+derive the concrete representations from the existential representations become
+the isomorphisms that translate between them.
 
 ```
 lensDerivation {s} {t} {a} {b} =

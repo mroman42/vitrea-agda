@@ -3,7 +3,7 @@ A tiny implementation of lenses and optics in Agda.  The formal proofs that
 derive the concrete representations from the existential representations become
 the isomorphisms that translate between them.
 
-``` agda
+``` haskell
 -- We derive lenses from their existential representation.
 lensDerivation {s} {t} {a} {b} =
   begin

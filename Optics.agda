@@ -9,7 +9,9 @@ open import Ends
 open import Yoneda
 open import Tambara
 open import Prelude.Function
+open import Prelude.Vec
 open import Prelude.Unit
+open import Prelude.Nat
 open import Prelude.Empty
 open import Prelude.Product
 open import Prelude.Sum renaming (Either to _+_)
@@ -87,3 +89,42 @@ prismDerivation {s} {t} {a} {b} =
    (∫exists c ∈ Set , ((c -> t) × ((s -> c + a) × (b -> t)))) ≅⟨ coyoneda ⟩
    ((s -> t + a) × (b -> t))
   qed
+
+
+-- -- Traversals, over analytic functions
+-- series : (Nat -> Set) -> Set -> Set
+-- series c a = Σ Nat (λ n -> c n × Vec a n)
+
+
+-- -- The problem I have with that description is that it is a bit
+-- -- difficult to work with these things.  Working with combinatorial
+-- -- species is easier than working with these things.
+-- analytic-identity : Nat -> Set
+-- analytic-identity 0 = ⊥
+-- analytic-identity 1 = ⊤
+-- analytic-identity (suc (suc n)) = ⊥
+
+-- analytic-composition : (Nat -> Set) -> (Nat -> Set) -> (Nat -> Set)
+-- analytic-composition c d zero = {!!}
+-- analytic-composition c d (suc n) = {!!}
+
+-- instance
+--   analytic-identity-is-unit : {a : Set} -> series analytic-identity a ≅ a
+--   analytic-identity-is-unit = record
+--     { iso = left-right
+--     ; inviso = right-left
+--     }
+--     where
+--       left-right : {a : Set} -> series analytic-identity a -> a
+--       left-right (0 , () , _)
+--       left-right (1 , tt , x ∷ []) = x
+--       left-right (suc _ , () , x ∷ y ∷ l)
+
+--       right-left : {a : Set} -> a -> series analytic-identity a
+--       right-left x = 1 , unit , x ∷ []
+
+--   analytic-action : Action series
+--   analytic-action = {!!}
+
+
+-- Traversals, over traversables
